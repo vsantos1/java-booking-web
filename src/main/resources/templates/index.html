@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <title>Desapega - Compras e vendas</title>
+</head>
+<body>
+
+<nav th:replace="~{componentes/nav/cabecalho :: cabecalho}"></nav>
+<div class="bg-primary mt-2">
+    <div>
+        <h1 class="text-center text-light">Desapega</h1>
+        <p class="text-center text-wrap text-light">
+             Rápido e Fácil para comprar e vender. Vender e Comprar nunca foi tão fácil! Anuncie Online aqui.</p>
+    </div>
+    <div class="input-group mb-3 p-3">
+        <input type="text" class="form-control" placeholder="Comece sua busca por aqui" aria-label="Pesquisar na página"
+               aria-describedby="pesquisa">
+        <span class="input-group-text" id="pesquisa">
+            <button class="btn btn-toolbar hover text-dark" type="button"> Buscar
+            </button>
+        </span>
+    </div>
+    <div class="container-fluid">
+        <ul class="align-items-center">
+            <li class="d-inline-block p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="apps-outline"></ion-icon>
+                    Todas categorias
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="business-outline"></ion-icon>
+                    Imóveis
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a  href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="car-outline"></ion-icon>
+                    Automóveis
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="desktop-outline"></ion-icon>
+                    Eletrônicos
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="home-outline"></ion-icon>
+                    Para sua casa
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="storefront-outline"></ion-icon>
+                    Serviços</a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover ">
+                    <ion-icon name="basketball-outline"></ion-icon>
+                    Esportes e lazer
+                </a>
+            </li>
+            <li class="d-inline-block  p-3">
+                <a href="#" class="text-white icon-link icon-link-hover">
+                    <ion-icon name="shirt-outline"></ion-icon>
+                    Moda e beleza
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</html>
