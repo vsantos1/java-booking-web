@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ImobiliariaWebApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(ImobiliariaWebApplication.class, args);
-  }
+    public static void main(String[] args) {
+
+        SpringApplication.run(ImobiliariaWebApplication.class, args);
+    }
 
 }
