@@ -1,5 +1,7 @@
 package br.com.vs1.imobiliaria.web.dtos;
 
+import br.com.vs1.imobiliaria.core.models.Endereco;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -24,13 +26,13 @@ public class ImovelDTO {
     private boolean disponivel;
     private String descricao;
     private String foto;
-    private EnderecoDTO endereco;
+    private Endereco endereco;
     private Date dataCadastro;
 
     public ImovelDTO() {
     }
 
-    public ImovelDTO(Long id, String nome, BigDecimal precoCompra, BigDecimal precoAluguel, Integer tamanho, Integer quantidadeQuartos, Integer quantidadeBanheiros, Integer garagem, boolean disponivel, String descricao, String foto, EnderecoDTO endereco, Date dataCadastro) {
+    public ImovelDTO(Long id, String nome, BigDecimal precoCompra, BigDecimal precoAluguel, Integer tamanho, Integer quantidadeQuartos, Integer quantidadeBanheiros, Integer garagem, boolean disponivel, String descricao, String foto, Endereco endereco, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.precoCompra = precoCompra;
@@ -134,11 +136,20 @@ public class ImovelDTO {
         this.foto = foto;
     }
 
-    public EnderecoDTO getEndereco() {
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(EnderecoDTO endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

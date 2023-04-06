@@ -1,6 +1,5 @@
 package br.com.vs1.imobiliaria.web.dtos;
 
-import java.util.Locale;
 
 public class FotoDTO {
 

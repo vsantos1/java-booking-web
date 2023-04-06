@@ -2,6 +2,9 @@ package br.com.vs1.imobiliaria.web.dtos;
 
 public class EnderecoDTO {
 
+
+    private Long id;
+
     private String cep;
 
     private String logradouro;
@@ -21,7 +24,11 @@ public class EnderecoDTO {
     private String siafi;
 
 
-    public EnderecoDTO(String cep, String logradouro, String complemento, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+    public EnderecoDTO() {
+    }
+
+    public EnderecoDTO(Long id,String cep, String logradouro, String complemento, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+       this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -32,7 +39,14 @@ public class EnderecoDTO {
         this.ddd = ddd;
         this.siafi = siafi;
     }
+    
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getCep() {
         return cep;
     }
@@ -107,16 +121,11 @@ public class EnderecoDTO {
 
     @Override
     public String toString() {
-        return "EnderecoDTO{" +
-                "cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", localidade='" + localidade + '\'' +
-                ", uf='" + uf + '\'' +
-                ", ibge='" + ibge + '\'' +
-                ", gia='" + gia + '\'' +
-                ", ddd='" + ddd + '\'' +
-                ", siafi='" + siafi + '\'' +
-                '}';
+        return "EnderecoDTO [id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento
+                + ", localidade=" + localidade + ", uf=" + uf + ", ibge=" + ibge + ", gia=" + gia + ", ddd=" + ddd
+                + ", siafi=" + siafi + "]";
     }
+
+
+    
 }
