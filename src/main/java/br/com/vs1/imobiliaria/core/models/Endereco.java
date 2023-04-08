@@ -41,9 +41,9 @@ public class Endereco implements Serializable{
     private String siafi;
 
     @OneToOne(mappedBy = "endereco")
-    @JsonIgnore
     private Imovel imovel;
-    
+
+
     public Endereco(){}
 
     public Endereco(Long id, String cep, String logradouro, String complemento, String localidade, String uf, String ibge, String gia, String ddd, String siafi, Imovel imovel) {
