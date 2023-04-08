@@ -21,8 +21,8 @@ public class WebImovelService {
     }
 
 
-    public List<Imovel> buscarTodos() {
-        return imovelRepository.findAll();
+    public List<Imovel> buscarTodosComIntervalo() {
+        return imovelRepository.buscaLimitada();
     }
 
     public ImovelDTO buscarPorId(Long id) {

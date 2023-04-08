@@ -5,9 +5,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.CascadeType;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -47,9 +44,8 @@ public class Imovel implements Serializable {
 
     private String foto;
 
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "endereco_id")
-    @JsonIgnore
     private Endereco endereco;
 
     private Date dataCadastro;
