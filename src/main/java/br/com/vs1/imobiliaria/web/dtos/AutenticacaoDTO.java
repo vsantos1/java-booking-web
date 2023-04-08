@@ -6,19 +6,25 @@ public class AutenticacaoDTO {
     
     private String senha;
 
+    private boolean erro;
+
     private boolean  lembrarEmail;
     
     public AutenticacaoDTO(){}
 
-    public AutenticacaoDTO(String email, String senha, boolean lembrarEmail) {
+
+    public AutenticacaoDTO(String email, String senha, boolean erro, boolean lembrarEmail) {
         this.email = email;
         this.senha = senha;
+        this.erro = erro;
         this.lembrarEmail = lembrarEmail;
     }
 
     public String getEmail() {
         return email;
     }
+
+
 
     public void setEmail(String email) {
         this.email = email;
@@ -32,6 +38,14 @@ public class AutenticacaoDTO {
         this.senha = senha;
     }
 
+    public boolean isErro() {
+        return erro;
+    }
+
+    public void setErro(boolean erro) {
+        this.erro = erro;
+    }
+
     public boolean isLembrarEmail() {
         return lembrarEmail;
     }
@@ -42,11 +56,11 @@ public class AutenticacaoDTO {
 
     @Override
     public String toString() {
-        return "AutenticacaoDTO [email=" + email + ", senha=" + senha + ", lembrarEmail=" + lembrarEmail + "]";
+        return "AutenticacaoDTO{" +
+                "email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", message='" + erro + '\'' +
+                ", lembrarEmail=" + lembrarEmail +
+                '}';
     }
-
-    
-   
-
-    
 }

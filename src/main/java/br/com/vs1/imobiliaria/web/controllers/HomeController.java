@@ -1,5 +1,6 @@
 package br.com.vs1.imobiliaria.web.controllers;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,26 +46,5 @@ public class HomeController {
         return mv;
     }
 
-    @GetMapping("/cadastro")
-    public ModelAndView paginaCadastroUsuario(UsuarioDTO usuarioDTO) {
 
-        ModelAndView mv = new ModelAndView("/paginas/cadastro-usuario");
-        mv.addObject("form", new Usuario());
-
-        return mv;
-    }
-
-    @PostMapping("/cadastro")
-    public String cadastroUsuario(@Valid UsuarioDTO usuarioDTO, BindingResult result, Model model) {
-
-        if (result.hasErrors()) {
-
-            model.addAttribute("erro",true);
-            System.out.println(result.getAllErrors());
-            return "redirect:/cadastro";
-        }
-
-        System.out.println(usuarioDTO.toString());
-        return "redirect:/entrar";
-    }
 }

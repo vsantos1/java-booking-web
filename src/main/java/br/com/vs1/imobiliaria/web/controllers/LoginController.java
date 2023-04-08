@@ -13,21 +13,13 @@ import br.com.vs1.imobiliaria.web.dtos.AutenticacaoDTO;
 public class LoginController {
 
     @GetMapping("/entrar")
-    public ModelAndView login() {
+    public ModelAndView login(AutenticacaoDTO autenticacaoDTO) {
 
         ModelAndView mv = new ModelAndView("/paginas/login-usuario");
 
         return mv;
     }
 
-    @GetMapping("/entrar/erro")
-    public ModelAndView loginErro() {
-        
-      
-        ModelAndView mv = new ModelAndView("/paginas/login-usuario-erro");
-
-        return mv;
-    }
 
     @GetMapping("/sair")
     public String logout() {
@@ -36,12 +28,15 @@ public class LoginController {
 
     // TODO : Implementar o login do usuário
     @PostMapping("/entrar")
-    public String loginErro(AutenticacaoDTO autenticacaoDTO) {
+    public ModelAndView loginErro(AutenticacaoDTO autenticacaoDTO) {
         System.out.println(autenticacaoDTO.toString());
+
         if (!autenticacaoDTO.getEmail().contains("test@gmail.com")) {
-            return "redirect:/entrar/erro";
+
+            autenticacaoDTO.setErro(true);
+            return new ModelAndView("/paginas/login-usuario");
         }
 
-        return "redirect:/";
+        return new ModelAndView("redirect:/");
     }
 }

@@ -2,6 +2,7 @@ package br.com.vs1.imobiliaria.core.models;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,15 +34,18 @@ public class Usuario implements Serializable {
 
     private String telefone;
 
+    private Date dataNascimento;
+
     public Usuario(){}
 
-    public Usuario(Long id, String nome, String email, String cpf, String senha, String telefone) {
+    public Usuario(Long id, String nome, String email, String cpf, String senha, String telefone, Date dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.senha = senha;
         this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
     }
 
     public Long getId() {
@@ -92,13 +96,24 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
-                + ", telefone=" + telefone + "]";
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    
-    
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", senha='" + senha + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                '}';
+    }
 }

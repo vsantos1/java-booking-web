@@ -1,11 +1,10 @@
 package br.com.vs1.imobiliaria.web.dtos;
 
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import java.util.Date;
 
 public class UsuarioDTO {
     
@@ -14,18 +13,20 @@ public class UsuarioDTO {
     private String nome;
 
     @Email
-    @NotEmpty
-    @NotNull
     private String email;
 
 
-    @CPF
+    @CPF(message = "CPF inválido")
     private String cpf;
 
-    @Size(min = 6)
+    @Size(min = 6,message = "A senha deve conter no mínimo 6 caracteres")
     private String senha;
 
     private String telefone;
+
+    @Past(message = "A data de nascimento deve ser anterior a data atual")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataNascimento;
 
     public UsuarioDTO(){}
 
@@ -77,12 +78,24 @@ public class UsuarioDTO {
         this.telefone = telefone;
     }
 
-    @Override
-    public String toString() {
-        return "UsuarioDTO [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
-                + ", telefone=" + telefone + "]";
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    
-    
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", senha='" + senha + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                '}';
+    }
 }
