@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Cadastrar</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-    <nav th:replace="~{componentes/nav/voltar :: voltar}"></nav>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fazer login</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+<nav th:replace="~{componentes/nav/voltar :: voltar}"></nav>
 
-    <div class="container">
-      <div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-12">
-          <h1 class="mt-2">Entrar</h1>
-          <p class="text-break">
-            Não possui uma conta?
-            <a class="icon-link icon-hover" th:href="@{/cadastro}">
-              Cadastre-se</a
-            >
-          </p>
+            <h1 class="mt-2">Entrar</h1>
+            <p class="text-break">
+                Não possui uma conta?
+                <a class="icon-link icon-hover" th:href="@{/cadastro}">
+                    Cadastre-se</a
+                >
+            </p>
         </div>
-      </div>
     </div>
+</div>
 
-    <form th:replace="~{componentes/form/login :: form-login}"></form>
-    <p
-      th:if="${loginErro}"
-      class="container alert alert-danger mt-3"
-      role="alert"
-    >
-      Email ou senha incorretos, tente novamente!
-    </p>
-  </body>
+<form th:action="@{/entrar}" method="post" class="container">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                aria-describedby="emailHelp"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" name="senha"/>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="lembrarEmail" id="checkHelp"/>
+        <label class="form-check-label" for="checkHelp">
+            Lembrar de mim
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+<p
+        th:if="${autenticacaoDTO.erro}"
+        class="container alert alert-danger mt-3"
+        role="alert"
+>
+    Email ou senha incorretos, tente novamente!
+</p>
+</body>
 </html>
