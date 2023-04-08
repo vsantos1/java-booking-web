@@ -86,14 +86,23 @@
                     th:href="@{/detalhes/imovel/{id}  (id=${imovel.id})}"
                     class="icon-link btn-link text-decoration-none"
                   >
-                    <ion-icon name="open-outline"></ion-icon>
+                    <img
+                      src="/assets/open-outline.svg"
+                      alt="Detalhes"
+                      width="20"
+                      height="20"
+                      class="teste"
+                    />
                     Detalhes
                   </a>
                   <a href="#" class="icon-link text-decoration-none">
-                    <ion-icon
-                      class="text-yellow"
-                      name="star-outline"
-                    ></ion-icon>
+                    <img
+                      src="/assets/star-outline.svg"
+                      alt="Favoritar"
+                      width="20"
+                      height="20"
+                      class="fav-hover"
+                    />
                     Favoritar
                   </a>
                 </div>
@@ -101,23 +110,17 @@
             </div>
           </div>
         </div>
-        <footer class="card-footer mb-3">
-          <a href="#buscar" class="icon-link icon-link-hover">
-            <ion-icon name="add-outline"></ion-icon>
-            Ver mais
-          </a>
-        </footer>
       </div>
+
+      <div class="align-self-center m-3">
+      <a class="btn btn-primary" th:href="@{/anuncios}">
+        Ver mais anúncios
+      </a>
+    </div>
+
     </main>
     <footer th:replace="~{componentes/footer/rodape :: rodape}"></footer>
   </body>
-  <script
-    type="module"
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-  ></script>
-  <script
-    nomodule
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-  ></script>
+
   <script src="/js/bootstrap.min.js"></script>
 </html>
