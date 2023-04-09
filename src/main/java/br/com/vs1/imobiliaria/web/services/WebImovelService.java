@@ -1,11 +1,15 @@
 package br.com.vs1.imobiliaria.web.services;
 
+import br.com.vs1.imobiliaria.core.models.Endereco;
 import br.com.vs1.imobiliaria.core.models.Imovel;
 import br.com.vs1.imobiliaria.core.repositories.ImovelRepository;
+import br.com.vs1.imobiliaria.web.client.CepClient;
+import br.com.vs1.imobiliaria.web.dtos.EnderecoDTO;
 import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +18,12 @@ public class WebImovelService {
 
     private final ImovelRepository imovelRepository;
     private final ModelMapper mapper;
+    private final WebEnderecoService webEnderecoService;
 
-    public WebImovelService(ImovelRepository imovelRepository, ModelMapper mapper) {
+    public WebImovelService(ImovelRepository imovelRepository, ModelMapper mapper, WebEnderecoService webEnderecoService) {
         this.imovelRepository = imovelRepository;
         this.mapper = mapper;
+        this.webEnderecoService = webEnderecoService;
     }
 
 
@@ -38,12 +44,20 @@ public class WebImovelService {
     }
 
     public void salvarImovel(ImovelDTO imovelDTO) {
+        Endereco endereco = webEnderecoService.salvarEndereco(mapper.map(imovelDTO.getEndereco(), EnderecoDTO.class));
+        imovelDTO.setEndereco(endereco);
+        imovelDTO.setDataCadastro(new Date());
         imovelRepository.save(mapper.map(imovelDTO, Imovel.class));
     }
 
     public void atualizarImovel(Long id, ImovelDTO imovelDTO) {
+
         ImovelDTO entidade = this.buscarPorId(id);
+
+        imovelDTO.setDataCadastro(entidade.getDataCadastro());
+
         Imovel imovel = mapper.map(imovelDTO, Imovel.class);
+
         imovelRepository.save(imovel);
 
     }

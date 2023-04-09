@@ -42,8 +42,8 @@ public class WebEnderecoService {
         throw new RuntimeException("Endereço não encontrado");
     }
 
-    public void salvarEndereco(EnderecoDTO enderecoDTO) {
-        enderecoRepository.save(mapper.map(enderecoDTO, Endereco.class));
+    public Endereco salvarEndereco(EnderecoDTO enderecoDTO) {
+        return enderecoRepository.save(mapper.map(enderecoDTO, Endereco.class));
     }
 
     public void atualizarEndereco(Long id, EnderecoDTO enderecoDTO) {
