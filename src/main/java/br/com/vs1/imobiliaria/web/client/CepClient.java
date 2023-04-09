@@ -9,7 +9,7 @@ public class CepClient implements CepRequest {
 
     private String baseUrl = "https://viacep.com.br/ws/";
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public CepClient() {
         this.restTemplate = new RestTemplate();
@@ -17,7 +17,7 @@ public class CepClient implements CepRequest {
 
     @Override
     public EnderecoDTO buscarEnderecoPorCep(String cep) {
-        EnderecoDTO endereco = restTemplate.getForObject(baseUrl + cep + "/" + RequestType.JSON.getValue(),
+        EnderecoDTO endereco = restTemplate.getForObject(baseUrl + cep + "/json",
                 EnderecoDTO.class);
 
         return endereco;

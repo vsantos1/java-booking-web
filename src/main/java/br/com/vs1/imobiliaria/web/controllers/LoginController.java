@@ -1,8 +1,6 @@
 package br.com.vs1.imobiliaria.web.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,15 +13,7 @@ public class LoginController {
     @GetMapping("/entrar")
     public ModelAndView login(AutenticacaoDTO autenticacaoDTO) {
 
-        ModelAndView mv = new ModelAndView("/paginas/login-usuario");
-
-        return mv;
-    }
-
-
-    @GetMapping("/sair")
-    public String logout() {
-        return "redirect:/";
+        return new ModelAndView("/paginas/login-usuario");
     }
 
     // TODO : Implementar o login do usuário
@@ -39,4 +29,11 @@ public class LoginController {
 
         return new ModelAndView("redirect:/");
     }
+
+    @GetMapping("/sair")
+    public String logout() {
+        return "redirect:/";
+    }
+
+
 }
