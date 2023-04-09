@@ -12,7 +12,7 @@
 <div class="container mt-3 mb-3">
     <div th:object="${imovel}" class="row">
         <div class="col-md-6">
-            <img th:src="${imovel.getfoto()}" height="400" src="/assets/test.webp" class="card-img card-img-top"
+            <img  th:src="${imovel.getfoto() == null ? '/assets/not-found.jpg': imovel.getfoto()}" height="400" class="card-img card-img-top"
                  th:alt="${imovel.nome}">
 
             <p class="text-md-start text-body-emphasis"
