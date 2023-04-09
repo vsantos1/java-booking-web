@@ -15,29 +15,23 @@ public class EnderecoDTO {
 
     private String uf;
 
-    private String ibge;
-
-    private String gia;
-
     private String ddd;
 
-    private String siafi;
+    private String bairro;
 
 
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(Long id,String cep, String logradouro, String complemento, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+    public EnderecoDTO(Long id,String cep, String logradouro, String complemento, String localidade,String bairro,String uf, String ddd, String siafi) {
        this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.complemento = complemento;
         this.localidade = localidade;
         this.uf = uf;
-        this.ibge = ibge;
-        this.gia = gia;
+        this.bairro = bairro;
         this.ddd = ddd;
-        this.siafi = siafi;
     }
     
     public Long getId() {
@@ -61,6 +55,14 @@ public class EnderecoDTO {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getComplemento() {
@@ -87,21 +89,7 @@ public class EnderecoDTO {
         this.uf = uf;
     }
 
-    public String getIbge() {
-        return ibge;
-    }
 
-    public void setIbge(String ibge) {
-        this.ibge = ibge;
-    }
-
-    public String getGia() {
-        return gia;
-    }
-
-    public void setGia(String gia) {
-        this.gia = gia;
-    }
 
     public String getDdd() {
         return ddd;
@@ -111,21 +99,18 @@ public class EnderecoDTO {
         this.ddd = ddd;
     }
 
-    public String getSiafi() {
-        return siafi;
-    }
-
-    public void setSiafi(String siafi) {
-        this.siafi = siafi;
-    }
 
     @Override
     public String toString() {
-        return "EnderecoDTO [id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento
-                + ", localidade=" + localidade + ", uf=" + uf + ", ibge=" + ibge + ", gia=" + gia + ", ddd=" + ddd
-                + ", siafi=" + siafi + "]";
+        return "EnderecoDTO{" +
+                "id=" + id +
+                ", cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", localidade='" + localidade + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", uf='" + uf + '\'' +
+                ", ddd='" + ddd + '\'' +
+                '}';
     }
-
-
-    
 }

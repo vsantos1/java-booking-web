@@ -5,13 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_imoveis")
@@ -44,8 +38,8 @@ public class Imovel implements Serializable {
 
     private String foto;
 
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id",updatable = false)
     private Endereco endereco;
 
     private Date dataCadastro;

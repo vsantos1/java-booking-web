@@ -1,6 +1,9 @@
 package br.com.vs1.imobiliaria.web.dtos;
 
 import br.com.vs1.imobiliaria.core.models.Endereco;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,23 +12,31 @@ public class ImovelDTO {
 
     private Long id;
 
+    @NotEmpty(message = "O titulo não pode ser vazio")
     private String nome;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private BigDecimal precoCompra;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private BigDecimal precoAluguel;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private Integer tamanho;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private Integer quantidadeQuartos;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private Integer quantidadeBanheiros;
 
     private Integer garagem;
 
     private boolean disponivel;
+    @NotEmpty(message = "A descrição não pode ser vazia")
     private String descricao;
     private String foto;
+
     private Endereco endereco;
     private Date dataCadastro;
 

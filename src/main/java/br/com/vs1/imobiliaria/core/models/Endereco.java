@@ -13,13 +13,13 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_enderecos")
-public class Endereco implements Serializable{
+public class Endereco implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String cep;
@@ -32,31 +32,27 @@ public class Endereco implements Serializable{
 
     private String uf;
 
-    private String ibge;
-
-    private String gia;
+    private String bairro;
 
     private String ddd;
 
-    private String siafi;
 
     @OneToOne(mappedBy = "endereco")
     private Imovel imovel;
 
 
-    public Endereco(){}
+    public Endereco() {
+    }
 
-    public Endereco(Long id, String cep, String logradouro, String complemento, String localidade, String uf, String ibge, String gia, String ddd, String siafi, Imovel imovel) {
+    public Endereco(Long id, String cep, String logradouro, String complemento, String localidade, String uf, String ddd, String bairro, Imovel imovel) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.complemento = complemento;
         this.localidade = localidade;
         this.uf = uf;
-        this.ibge = ibge;
-        this.gia = gia;
         this.ddd = ddd;
-        this.siafi = siafi;
+        this.bairro = bairro;
         this.imovel = imovel;
     }
 
@@ -108,21 +104,6 @@ public class Endereco implements Serializable{
         this.uf = uf;
     }
 
-    public String getIbge() {
-        return ibge;
-    }
-
-    public void setIbge(String ibge) {
-        this.ibge = ibge;
-    }
-
-    public String getGia() {
-        return gia;
-    }
-
-    public void setGia(String gia) {
-        this.gia = gia;
-    }
 
     public String getDdd() {
         return ddd;
@@ -132,20 +113,20 @@ public class Endereco implements Serializable{
         this.ddd = ddd;
     }
 
-    public String getSiafi() {
-        return siafi;
-    }
-
-    public void setSiafi(String siafi) {
-        this.siafi = siafi;
-    }
-
     public Imovel getImovel() {
         return imovel;
     }
 
     public void setImovel(Imovel imovel) {
         this.imovel = imovel;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     @Override
@@ -157,10 +138,8 @@ public class Endereco implements Serializable{
                 ", complemento='" + complemento + '\'' +
                 ", localidade='" + localidade + '\'' +
                 ", uf='" + uf + '\'' +
-                ", ibge='" + ibge + '\'' +
-                ", gia='" + gia + '\'' +
                 ", ddd='" + ddd + '\'' +
-                ", siafi='" + siafi + '\'' +
+                ", bairro='" + bairro + '\'' +
                 ", imovel=" + imovel +
                 '}';
     }
