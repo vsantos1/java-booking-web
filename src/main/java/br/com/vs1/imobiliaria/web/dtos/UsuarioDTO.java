@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class UsuarioDTO {
-    
+
     private Long id;
 
     private String nome;
@@ -15,11 +15,11 @@ public class UsuarioDTO {
     @Email
     private String email;
 
-
-    @CPF(message = "CPF inválido")
+    // TODO: Validar CPF antes de salvar no banco
+    //@CPF(message = "CPF inválido")
     private String cpf;
 
-    @Size(min = 6,message = "A senha deve conter no mínimo 6 caracteres")
+    @Size(min = 6, message = "A senha deve conter no mínimo 6 caracteres")
     private String senha;
 
     private String telefone;
@@ -28,7 +28,8 @@ public class UsuarioDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
 
-    public UsuarioDTO(){}
+    public UsuarioDTO() {
+    }
 
     public Long getId() {
         return id;
