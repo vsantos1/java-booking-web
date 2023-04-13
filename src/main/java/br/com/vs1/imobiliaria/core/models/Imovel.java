@@ -33,7 +33,7 @@ public class Imovel implements Serializable {
     private Integer garagem;
 
     private boolean disponivel;
-    
+
     private String descricao;
 
     private String foto;
@@ -47,11 +47,10 @@ public class Imovel implements Serializable {
     public Imovel() {
     }
 
-   
 
     public Imovel(Long id, String nome, BigDecimal precoCompra, BigDecimal precoAluguel, Integer tamanho,
-            Integer quantidadeQuartos, Integer quantidadeBanheiros, Integer garagem, boolean disponivel,
-            String descricao, String foto, Endereco endereco, Date dataCadastro) {
+                  Integer quantidadeQuartos, Integer quantidadeBanheiros, Integer garagem, boolean disponivel,
+                  String descricao, String foto, Endereco endereco, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.precoCompra = precoCompra;
@@ -66,7 +65,6 @@ public class Imovel implements Serializable {
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
     }
-
 
 
     public Long getId() {
@@ -158,7 +156,6 @@ public class Imovel implements Serializable {
     }
 
 
-
     public Date getDataCadastro() {
         return dataCadastro;
     }
@@ -183,7 +180,5 @@ public class Imovel implements Serializable {
                 + descricao + ", foto=" + foto + ", endereco=" + endereco + ", dataCadastro=" + dataCadastro + "]";
     }
 
-    
-    
 
 }

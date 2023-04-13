@@ -9,7 +9,6 @@ import br.com.vs1.imobiliaria.core.models.Imovel;
 
 public interface ImovelRepository extends JpaRepository<Imovel, Long>{
 
-    // Busca todos os imóveis cadastrados nos últimos 7 dias
-    @Query(value = "SELECT * FROM tb_imoveis WHERE now() > data_cadastro  - interval '7' day LIMIT 20", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_imoveis WHERE data_cadastro >= DATE_TRUNC('year', CURRENT_DATE) AND now() > data_cadastro - interval '7' day LIMIT 9", nativeQuery = true)
     List<Imovel> buscaLimitada();
 }

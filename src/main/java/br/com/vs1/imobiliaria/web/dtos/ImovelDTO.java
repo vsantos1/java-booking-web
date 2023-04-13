@@ -3,7 +3,7 @@ package br.com.vs1.imobiliaria.web.dtos;
 import br.com.vs1.imobiliaria.core.models.Endereco;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -35,29 +35,16 @@ public class ImovelDTO {
     private boolean disponivel;
     @NotEmpty(message = "A descrição não pode ser vazia")
     private String descricao;
-    private String foto;
+    private MultipartFile file;
 
     private Endereco endereco;
     private Date dataCadastro;
 
+    private String foto;
+
     public ImovelDTO() {
     }
 
-    public ImovelDTO(Long id, String nome, BigDecimal precoCompra, BigDecimal precoAluguel, Integer tamanho, Integer quantidadeQuartos, Integer quantidadeBanheiros, Integer garagem, boolean disponivel, String descricao, String foto, Endereco endereco, Date dataCadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.precoCompra = precoCompra;
-        this.precoAluguel = precoAluguel;
-        this.tamanho = tamanho;
-        this.quantidadeQuartos = quantidadeQuartos;
-        this.quantidadeBanheiros = quantidadeBanheiros;
-        this.garagem = garagem;
-        this.disponivel = disponivel;
-        this.descricao = descricao;
-        this.foto = foto;
-        this.endereco = endereco;
-        this.dataCadastro = dataCadastro;
-    }
 
     public Long getId() {
         return id;
@@ -65,6 +52,14 @@ public class ImovelDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getNome() {
@@ -94,6 +89,15 @@ public class ImovelDTO {
     public Integer getTamanho() {
         return tamanho;
     }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
 
     public void setTamanho(Integer tamanho) {
         this.tamanho = tamanho;
@@ -139,22 +143,6 @@ public class ImovelDTO {
         this.descricao = descricao;
     }
 
-    public String getfoto() {
-        return foto;
-    }
-
-    public void setfoto(String foto) {
-        this.foto = foto;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
 
     public Endereco getEndereco() {
         return endereco;
@@ -185,7 +173,6 @@ public class ImovelDTO {
                 ", garagem=" + garagem +
                 ", disponivel=" + disponivel +
                 ", descricao='" + descricao + '\'' +
-                ", foto=" + foto +
                 ", endereco=" + endereco +
                 ", dataCadastro=" + dataCadastro +
                 '}';
