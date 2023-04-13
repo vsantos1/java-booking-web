@@ -1,11 +1,7 @@
 package br.com.vs1.imobiliaria.web.controllers;
 
-import br.com.vs1.imobiliaria.core.models.Endereco;
-import br.com.vs1.imobiliaria.web.client.CepClient;
-import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
-import br.com.vs1.imobiliaria.web.services.WebImovelService;
-import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +9,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
+import br.com.vs1.imobiliaria.web.services.WebArquivoUploadService;
+import br.com.vs1.imobiliaria.web.services.WebImovelService;
+import jakarta.validation.Valid;
+
 @Controller
 public class ImovelController {
 
     private final WebImovelService webImovelService;
+    private final WebArquivoUploadService webArquivoUploadService;
 
-    public ImovelController(WebImovelService webImovelService) {
+    public ImovelController(WebImovelService webImovelService, WebArquivoUploadService webArquivoUploadService) {
         this.webImovelService = webImovelService;
 
+        this.webArquivoUploadService = webArquivoUploadService;
     }
 
     @GetMapping("/imoveis/detalhes/{id}")
@@ -51,19 +54,23 @@ public class ImovelController {
     }
 
     @PostMapping("/imoveis/novo")
-    public ModelAndView salvarImovel(@Valid ImovelDTO imovelDTO, BindingResult result) {
+    public ModelAndView salvarImovel(@Valid ImovelDTO imovelDTO, BindingResult result) throws IOException {
+
 
         if (result.hasErrors()) {
             return new ModelAndView("/paginas/cadastro-imovel");
         }
 
+
+        String fileName = webArquivoUploadService.upload(imovelDTO, 25);
+        imovelDTO.setFoto(fileName);
         webImovelService.salvarImovel(imovelDTO);
 
         return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/imoveis/editar/{id}")
-    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result) {
+    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result) throws IOException {
 
         if (result.hasErrors()) {
             System.out.println("erros" + result.getAllErrors());
@@ -71,7 +78,8 @@ public class ImovelController {
             mv.addObject("imovel", webImovelService.buscarPorId(id));
             return mv;
         }
-
+        String fileName = webArquivoUploadService.upload(imovelDTO, 10);
+        imovelDTO.setFoto(fileName);
         webImovelService.atualizarImovel(id, imovelDTO);
 
         return new ModelAndView("redirect:/");

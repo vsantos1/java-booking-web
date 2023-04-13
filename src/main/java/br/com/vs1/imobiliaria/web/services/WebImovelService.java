@@ -45,6 +45,7 @@ public class WebImovelService {
 
     public void salvarImovel(ImovelDTO imovelDTO) {
         Endereco endereco = webEnderecoService.salvarEndereco(mapper.map(imovelDTO.getEndereco(), EnderecoDTO.class));
+
         imovelDTO.setEndereco(endereco);
         imovelDTO.setDataCadastro(new Date());
         imovelRepository.save(mapper.map(imovelDTO, Imovel.class));
@@ -58,7 +59,7 @@ public class WebImovelService {
 
         Imovel imovel = mapper.map(imovelDTO, Imovel.class);
 
-        imovelRepository.save(imovel);
+        imovelRepository.saveAndFlush(imovel);
 
     }
 
