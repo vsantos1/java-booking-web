@@ -22,6 +22,8 @@
                     th:utext="${imovel.disponivel? 'Comprar': 'Vendido'}">
                 Carregando
             </a>
+            <a th:href="@{/imoveis/editar/{id}(id=${imovel.id})}" class="btn btn-link">Editar</a>
+            <a th:href="@{/imoveis/excluir/{id}(id=${imovel.id})}" class="btn btn-danger">Excluir</a>
 
 
             <a class="btn btn-outline-light text-dark rounded-4" th:if="${imovel.disponivel}" th:href="@{/chat/test}">
