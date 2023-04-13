@@ -12,8 +12,9 @@
 <div class="container mt-3 mb-3">
     <div th:object="${imovel}" class="row">
         <div class="col-md-6">
-            <img  th:src="${imovel.getfoto() == null ? '/assets/not-found.jpg': imovel.getfoto()}" height="400" class="card-img card-img-top"
-                 th:alt="${imovel.nome}">
+            <img  
+            th:src="${imovel.foto == null ? '/assets/not-found.jpg': '/image/' + imovel.foto}"
+            th:class="'card-img' + 'card-img-top'" height="400"  th:alt="${imovel.nome}">
 
             <p class="text-md-start text-body-emphasis"
                th:text="'Publicado, '+${#calendars.format(imovel.dataCadastro,'dd MMMM yyyy')}"></p>
