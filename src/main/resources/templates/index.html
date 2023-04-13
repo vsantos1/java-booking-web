@@ -17,11 +17,12 @@
           Vender e Comprar nunca foi tão fácil! Anuncie Online aqui.
         </p>
       </div>
-      <form>
+      <form th:action="@{/anuncios}">
         <div class="input-group mb-3 p-3">
           <input
             type="text"
             class="form-control"
+            name="busca"
             placeholder="Comece sua busca por aqui"
             aria-label="Pesquisar na página"
             aria-describedby="pesquisa"

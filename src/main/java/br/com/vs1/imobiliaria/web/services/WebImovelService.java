@@ -3,7 +3,6 @@ package br.com.vs1.imobiliaria.web.services;
 import br.com.vs1.imobiliaria.core.models.Endereco;
 import br.com.vs1.imobiliaria.core.models.Imovel;
 import br.com.vs1.imobiliaria.core.repositories.ImovelRepository;
-import br.com.vs1.imobiliaria.web.client.CepClient;
 import br.com.vs1.imobiliaria.web.dtos.EnderecoDTO;
 import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
 import org.modelmapper.ModelMapper;
@@ -20,15 +19,23 @@ public class WebImovelService {
     private final ModelMapper mapper;
     private final WebEnderecoService webEnderecoService;
 
-    public WebImovelService(ImovelRepository imovelRepository, ModelMapper mapper, WebEnderecoService webEnderecoService) {
+    public WebImovelService(ImovelRepository imovelRepository, ModelMapper mapper,
+            WebEnderecoService webEnderecoService) {
         this.imovelRepository = imovelRepository;
         this.mapper = mapper;
         this.webEnderecoService = webEnderecoService;
     }
 
-
     public List<Imovel> buscarTodosComIntervalo() {
         return imovelRepository.buscaLimitada();
+    }
+
+    public List<Imovel> buscarTodos() {
+        return imovelRepository.findAll();
+    }
+
+    public List<Imovel> buscarPorParametros(String parametros) {
+        return imovelRepository.buscaComParametros(parametros);
     }
 
     public ImovelDTO buscarPorId(Long id) {

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
@@ -24,6 +25,19 @@ public class ImovelController {
         this.webImovelService = webImovelService;
 
         this.webArquivoUploadService = webArquivoUploadService;
+    }
+
+    @GetMapping("/anuncios")
+    public ModelAndView imoveis(@RequestParam(required = false) String busca) {
+
+        ModelAndView mv = new ModelAndView("index");
+
+        if (busca != null && !busca.isEmpty()) {
+            return mv.addObject("imoveis", webImovelService.buscarPorParametros(busca));
+        }
+        mv.addObject("imoveis", webImovelService.buscarTodos());
+
+        return mv;
     }
 
     @GetMapping("/imoveis/detalhes/{id}")
@@ -49,18 +63,15 @@ public class ImovelController {
     @GetMapping("/imoveis/novo")
     public ModelAndView novoImovel(ImovelDTO imovelDTO) {
 
-
         return new ModelAndView("/paginas/cadastro-imovel");
     }
 
     @PostMapping("/imoveis/novo")
     public ModelAndView salvarImovel(@Valid ImovelDTO imovelDTO, BindingResult result) throws IOException {
 
-
         if (result.hasErrors()) {
             return new ModelAndView("/paginas/cadastro-imovel");
         }
-
 
         String fileName = webArquivoUploadService.upload(imovelDTO, 25);
         imovelDTO.setFoto(fileName);
@@ -70,7 +81,8 @@ public class ImovelController {
     }
 
     @PostMapping("/imoveis/editar/{id}")
-    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result) throws IOException {
+    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result)
+            throws IOException {
 
         if (result.hasErrors()) {
             System.out.println("erros" + result.getAllErrors());

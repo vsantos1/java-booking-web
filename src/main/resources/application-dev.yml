@@ -10,7 +10,7 @@ spring:
     password: ${DB_PASSWORD}
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?serverTimezone=UTC
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
   servlet:
