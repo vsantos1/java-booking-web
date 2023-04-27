@@ -51,7 +51,8 @@
         </div>
         <div class="invalid-feedback" th:errors="${usuarioDTO.email}"></div>
         <p th:if="${param.erro}" class="container-sm alert alert-danger mt-3" role="alert">
-            Já existe um usuário cadastrado com esse email ou CPF, não foi possível cadastrar um novo usuário com esses dados.
+            Já existe um usuário cadastrado com esse email ou CPF, não foi possível cadastrar um novo usuário com esses
+            dados.
         </p>
         <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
@@ -114,9 +115,9 @@
                     class="form-check-input"
                     id="termsCheck"
             />
-            <label class="form-check-label" for="termsCheck"
-            >Concordo com os
-                <a class="icon-link icon-hover" href="/tos">Termos de uso</a>.
+            <label class="form-check-label" for="termsCheck">
+                Concordo com os
+                <a class=" icon-link icon-hover" href="/tos">Termos de uso</a>.
             </label>
         </div>
 

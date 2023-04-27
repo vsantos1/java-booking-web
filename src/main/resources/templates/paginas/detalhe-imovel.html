@@ -11,16 +11,16 @@
 
 <div class="container mt-3 mb-3">
     <div th:object="${imovel}" class="row">
+            <img th:src="${imovel.foto == null ? '/assets/not-found.jpg': '/image/' + imovel.foto}"
+                 th:class="'card-img' + 'card-img-top'" height="400" alt="Imagem do imóvel">
         <div class="col-md-6">
-            <img  
-            th:src="${imovel.foto == null ? '/assets/not-found.jpg': '/image/' + imovel.foto}"
-            th:class="'card-img' + 'card-img-top'" height="400"  th:alt="${imovel.nome}">
+
 
             <p class="text-md-start text-body-emphasis"
                th:text="'Publicado, '+${#calendars.format(imovel.dataCadastro,'dd MMMM yyyy')}"></p>
 
             <a th:class="'btn btn-'+${imovel.disponivel ? 'primary': 'danger'}"
-                    th:utext="${imovel.disponivel? 'Comprar': 'Vendido'}">
+               th:utext="${imovel.disponivel? 'Comprar': 'Vendido'}">
                 Carregando
             </a>
             <a th:href="@{/imoveis/editar/{id}(id=${imovel.id})}" class="btn btn-link">Editar</a>
@@ -31,7 +31,6 @@
                 <ion-icon name="chatbubble-outline"></ion-icon>
                 Conversar com o vendedor
             </a>
-
         </div>
         <div class="col-md-6">
             <h1 th:utext="${imovel.nome}"></h1>
