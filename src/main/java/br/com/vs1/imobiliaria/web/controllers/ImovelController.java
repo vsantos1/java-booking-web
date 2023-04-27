@@ -1,13 +1,13 @@
 package br.com.vs1.imobiliaria.web.controllers;
 
 import java.io.IOException;
+import java.util.Date;
 
+import jakarta.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.vs1.imobiliaria.web.dtos.ImovelDTO;
@@ -73,16 +73,23 @@ public class ImovelController {
             return new ModelAndView("/paginas/cadastro-imovel");
         }
 
-        String fileName = webArquivoUploadService.upload(imovelDTO, 25);
+        imovelDTO.setDataCadastro(new Date());
+        if (imovelDTO.getFile().isEmpty()) {
+            imovelDTO.setFoto(null);
+            webImovelService.salvarImovel(imovelDTO);
+            return new ModelAndView("redirect:/");
+        }
+        String fileName = webArquivoUploadService.imageUpload(imovelDTO.getFile(), "", true, 25);
+
         imovelDTO.setFoto(fileName);
+        imovelDTO.setDataCadastro(new Date());
         webImovelService.salvarImovel(imovelDTO);
 
         return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/imoveis/editar/{id}")
-    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result)
-            throws IOException {
+    public ModelAndView editarImovel(@PathVariable("id") Long id, @Valid ImovelDTO imovelDTO, BindingResult result) {
 
         if (result.hasErrors()) {
             System.out.println("erros" + result.getAllErrors());
@@ -90,8 +97,6 @@ public class ImovelController {
             mv.addObject("imovel", webImovelService.buscarPorId(id));
             return mv;
         }
-        String fileName = webArquivoUploadService.upload(imovelDTO, 10);
-        imovelDTO.setFoto(fileName);
         webImovelService.atualizarImovel(id, imovelDTO);
 
         return new ModelAndView("redirect:/");

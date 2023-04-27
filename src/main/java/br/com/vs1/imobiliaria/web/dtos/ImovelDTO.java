@@ -1,8 +1,10 @@
 package br.com.vs1.imobiliaria.web.dtos;
 
 import br.com.vs1.imobiliaria.core.models.Endereco;
+import jakarta.servlet.http.Part;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -30,17 +32,19 @@ public class ImovelDTO {
     @Min(value = 0, message = "O valor deve ser maior que 0")
     private Integer quantidadeBanheiros;
 
+    @Min(value = 0, message = "O valor deve ser maior que 0")
     private Integer garagem;
 
     private boolean disponivel;
     @NotEmpty(message = "A descrição não pode ser vazia")
     private String descricao;
+
     private MultipartFile file;
 
+    private String foto;
     private Endereco endereco;
     private Date dataCadastro;
 
-    private String foto;
 
     public ImovelDTO() {
     }
@@ -54,13 +58,6 @@ public class ImovelDTO {
         this.id = id;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 
     public String getNome() {
         return nome;
@@ -90,6 +87,15 @@ public class ImovelDTO {
         return tamanho;
     }
 
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public MultipartFile getFile() {
         return file;
     }
@@ -97,7 +103,6 @@ public class ImovelDTO {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-
 
     public void setTamanho(Integer tamanho) {
         this.tamanho = tamanho;
@@ -118,6 +123,7 @@ public class ImovelDTO {
     public void setQuantidadeBanheiros(Integer quantidadeBanheiros) {
         this.quantidadeBanheiros = quantidadeBanheiros;
     }
+
 
     public Integer getGaragem() {
         return garagem;
