@@ -1,4 +1,8 @@
 spring:
+  devtools:
+    restart:
+      poll-interval: 2s
+      enabled: true
   output:
     ansi:
       enabled: always
