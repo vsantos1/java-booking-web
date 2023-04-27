@@ -132,7 +132,9 @@
         </div>
         <div class="mb-3">
             <label for="file" class="form-label">Imagem do imóvel</label>
-            <input  th:field="${imovelDTO.file}" class="form-control form-control-sm" name="file" id="file" type="file">
+            <input accept="image/png, image/gif, image/jpeg" placeholder="Envie a melhor imagem para seu anúncio"  th:field="${imovelDTO.file}" th:errorclass="is-invalid" class="form-control form-control-sm" name="file" id="file" type="file">
+            <div class="invalid-feedback" th:errors="${imovelDTO.file}"></div>
+
         </div>
         <div class="mb-3">
             <label for="endereco" class="form-label">Endereço - CEP</label>
