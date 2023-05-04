@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -37,11 +37,12 @@
 
 </div>
 
+
 <main class="card overflow-x-hidden mb-5">
     <header class="card-header">
         <h2 class="card-title">Anúncios</h2>
     </header>
-    <p class="m-3 card-subtitle">Vejasaa os anúncios mais recentes</p>
+    <p class="m-3 card-subtitle">Veja os anúncios mais recentes</p>
     <div class="container">
         <div class="row">
             <h3
@@ -129,6 +130,8 @@
         </a>
     </div>
 </main>
+
+
 <footer th:replace="~{componentes/footer/rodape :: rodape}"></footer>
 </body>
 
