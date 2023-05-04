@@ -14,8 +14,8 @@
             <li class="nav-item">
                 <a class="nav-link text-black" href="/">Página inicial</a>
             </li>
-            <li class="nav-item"><a class="nav-link text-black" href="/imoveis/novo">Quero Vender</a></li>
-            <li class="nav-item"><a class="nav-link text-body-secondary disabled" href="/">Quero comprar</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="/imoveis/novo">Quero vender</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="/dashboard">Meus anúncios</a></li>
             <li class="nav-item dropdown">
                 <a
                         class="nav-link dropdown-toggle text-body"
@@ -34,13 +34,17 @@
                     <li><a class="dropdown-item" href="/">Contate o suporte</a></li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-black" href="/entrar">Entrar</a>
+            <li class="nav-item" th:if="${!usuarioAutenticacao.estaAutenticado()}">
+                <a class="nav-link text-black" href="/login">Entrar</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" th:if="${!usuarioAutenticacao.estaAutenticado()}">
                 <a class="nav-link text-black" href="/cadastro">Cadastrar</a>
+            </li>
+            <li class="nav-item" th:if="${usuarioAutenticacao.estaAutenticado()}">
+                <a class="nav-link text-black" href="/logout">Sair</a>
             </li>
         </ul>
     </div>
 </nav>
+
