@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title> Detalhes do imóvel</title>
+    <title th:text="'Detalhes do imóvel ' + ${imovel.getNome()}">Detalhes do imóvel</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <nav th:replace="~{componentes/nav/cabecalho :: cabecalho}"></nav>
@@ -11,8 +12,17 @@
 
 <div class="container mt-3 mb-3">
     <div th:object="${imovel}" class="row">
-            <img th:src="${imovel.foto == null ? '/assets/not-found.jpg': '/image/' + imovel.foto}"
-                 th:class="'card-img' + 'card-img-top'" height="400" alt="Imagem do imóvel">
+        <img
+
+                th:if="${imovel.foto != null}"
+                th:src="@{${'/arquivos?nome=' + imovel.foto}}"
+                th:class="'card-img' + 'card-img-top'"
+                height="300"
+                th:alt="${imovel.descricao}"
+        />
+
+        <img class="card-img card-img-top" th:unless="${imovel.foto != null}" src="/assets/not-found.jpg"
+             height="300" th:alt="${imovel.descricao}">
         <div class="col-md-6">
 
 
@@ -23,11 +33,14 @@
                th:utext="${imovel.disponivel? 'Comprar': 'Vendido'}">
                 Carregando
             </a>
-            <a th:href="@{/imoveis/editar/{id}(id=${imovel.id})}" class="btn btn-link">Editar</a>
-            <a th:href="@{/imoveis/excluir/{id}(id=${imovel.id})}" class="btn btn-danger">Excluir</a>
+            <a th:href="@{/imoveis/editar/{id}(id=${imovel.id})}" th:if="${usuarioAutenticacao.estaAutenticado()}"
+               class="btn btn-link">Editar</a>
+            <a th:href="@{/imoveis/excluir/{id}(id=${imovel.id})}" th:if="${usuarioAutenticacao.estaAutenticado()}"
+               class="btn btn-danger">Excluir</a>
 
 
-            <a class="btn btn-outline-light text-dark rounded-4" th:if="${imovel.disponivel}" th:href="@{/chat/test}">
+            <a class="btn btn-outline-light text-dark rounded-4 disabled" th:if="${imovel.disponivel}"
+               th:href="@{/chat}">
                 <ion-icon name="chatbubble-outline"></ion-icon>
                 Conversar com o vendedor
             </a>
