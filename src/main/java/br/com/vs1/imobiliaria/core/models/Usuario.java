@@ -2,22 +2,21 @@ package br.com.vs1.imobiliaria.core.models;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_usuarios")
-public class Usuario implements Serializable {
-    
+public class Usuario implements UserDetails, Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,7 +35,15 @@ public class Usuario implements Serializable {
 
     private Date dataNascimento;
 
-    public Usuario(){}
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_usuario_permissoes",
+            joinColumns = @JoinColumn(name = "usario_id"),
+            inverseJoinColumns = @JoinColumn(name = "permissao_id"))
+    private List<Permissoes> permissoes;
+
+    public Usuario() {
+    }
 
     public Usuario(Long id, String nome, String email, String cpf, String senha, String telefone, Date dataNascimento) {
         this.id = id;
@@ -115,5 +122,49 @@ public class Usuario implements Serializable {
                 ", telefone='" + telefone + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 '}';
+    }
+
+    public List<Permissoes> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(List<Permissoes> permissoes) {
+        this.permissoes = permissoes;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.permissoes;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
