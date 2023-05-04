@@ -3,6 +3,7 @@ package br.com.vs1.imobiliaria.web.controllers;
 import java.io.IOException;
 import java.util.Date;
 
+import br.com.vs1.imobiliaria.web.utils.UsuarioAutenticacao;
 import jakarta.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ public class ImovelController {
     }
 
     @GetMapping("/anuncios")
-    public ModelAndView imoveis(@RequestParam(required = false) String busca) {
+    public ModelAndView imoveis(@RequestParam(required = false) String busca, UsuarioAutenticacao usuarioAutenticacao) {
 
         ModelAndView mv = new ModelAndView("index");
 
@@ -41,7 +42,7 @@ public class ImovelController {
     }
 
     @GetMapping("/imoveis/detalhes/{id}")
-    public ModelAndView detalhesImovel(@PathVariable("id") Long id) {
+    public ModelAndView detalhesImovel(@PathVariable("id") Long id, UsuarioAutenticacao usuarioAutenticacao) {
 
         ModelAndView mv = new ModelAndView("/paginas/detalhe-imovel");
 
@@ -100,5 +101,13 @@ public class ImovelController {
         webImovelService.atualizarImovel(id, imovelDTO);
 
         return new ModelAndView("redirect:/");
+    }
+
+    @GetMapping("/imoveis/excluir/{id}")
+    public ModelAndView excluirImovel(@PathVariable("id") Long id) {
+
+        webImovelService.deletarImovel(id);
+
+        return new ModelAndView("redirect:/anuncios");
     }
 }
