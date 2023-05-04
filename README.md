@@ -43,6 +43,8 @@
 - [x] Users
 - [x] Houses
 - [x] Chat
+- [x] Users
+- [x] User Permissions
 
 ## Running the application
 
